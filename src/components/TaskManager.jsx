@@ -30,7 +30,7 @@ const handleDelete = idx => {
                     <input type= "text" className="border-2
                      border-green-400 p-2 rounded-md outline-none w-10/12" 
                      onChange={(e) => setInput(e.target.value)}
-                    //  value={input === ""}
+                     value={input === ""}
                       />
                      
                     <button type="submit" className="bg-blue-600
@@ -39,7 +39,7 @@ const handleDelete = idx => {
                      > Add</button>
                 </form>
 
-                <div className="space-y-3 overflow-auto h-50">
+                <div className="space-y-3 h-50 overflow-y-scroll">
                     {
                     tasks.map((task) => (
                     <TaskItem task={task} handleDelete={handleDelete} />
