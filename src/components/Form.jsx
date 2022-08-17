@@ -30,7 +30,7 @@ function Form() {
              type="text"
               name='firstName'
                id='firstName' 
-               className="form-input"
+               className="form-input transition-all"
                 value={data.firstName} 
                onChange={handleChange } />
         </div>
@@ -58,10 +58,10 @@ function Form() {
         </div>
        </div>
       <div>
-            <label htmlFor="gender" className='form-label'>
+            <label htmlFor="gender" className="form-label">
                 Gender
             </label>
-            <label htmlFor="male">
+            <label htmlFor="male" >
                 <input 
                 type="radio" 
                  name='gender'
@@ -76,45 +76,48 @@ function Form() {
                  type="radio" 
                  name='gender' 
                  value="female"
-                  id='female' 
+                  id='female'
                   onChange={handleChange}
                   />{""}
                    Female
             </label>
         </div>
         <div>
-            <label htmlFor="dateOfBirth">Date of Birth</label>
+            <label htmlFor="dateOfBirth" className='form-label'>Date of Birth</label>
             <input
              type="date" 
              name="dateOfBirth"
+             className='form-input'
              value={data.dateOfBirth}
             onChange={handleChange}
              
              />
         </div>
         <div>
-            <label htmlFor="phone">Phone Number</label> 
+            <label htmlFor="phone" className='form-label'>Phone Number</label> 
             <input
              type="number" 
              placeholder='xxx-xxx-xxxx'
              name='phoneNumber'
+             className='form-input'
              value={data.phoneNumber}
             onChange={handleChange}
              
              /> 
         </div>
         <div>
-        <label htmlFor="email"> Email</label> 
+        <label htmlFor="email" className='form-label'> Email</label> 
             <input
              type="email"
               name='email'
                id='email' 
                placeholder='john.doe@email.com'
+               className='form-input'
                onChange={handleChange}
               /> 
         </div>
         <div>
-            <button type='submit'>Register</button>
+            <button type='submit' className='bg-blue-500 p-2 rounded-lg text-white'>Register</button>
         </div>
 
         

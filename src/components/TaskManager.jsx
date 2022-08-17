@@ -1,48 +1,60 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
+
+import { v4 as uuid } from "uuid";
+
 import TaskItem from "./TaskItem";
 
 function TaskManager(){
-const [tasks, setTasks] = useState([]);
-const [input, setInput] = useState("");
+const [tasks, setTasks] = useState(() => {
+    const tasks = localStorage.getItem('tasks')
+    if(!tasks) return [];
+    return JSON.parse(tasks);
 
+});
+const [input, setInput] = useState("");
+console.log(tasks);
 const handleSubmit = (e) => {
     e.preventDefault();
-    if(input==="") return;
+    if(input === "") return;
 
-    setTasks([input, ...tasks]);
+    let newTask = {
+        id: uuid(),
+        text: input,
+        completed: true,
+    };
+
+    setTasks([newTask, ...tasks], () => {})
+
     setInput("")
 };
-
-const handleDelete = idx => {
-    const newTask = tasks.filter((task) => task !== idx);
-    setTasks(newTask);
-
-}
+    
+    const handleDelete = (id) => {
+    const newTasks = tasks.filter((task) => task.id !== id);
+    setTasks(newTasks);
+};
+    useEffect(() => {
+        localStorage.setItem("tasks", JSON.stringify(tasks) )
+    },[tasks])
 
     return (
- <div className="h-screen 
-         bg-blue-600 
-         flex justify-center
-         items-center" 
-         >
-            <div className="max-w-xl bg-white rounded-xl px-5 py-10">
-                <form  onSubmit={handleSubmit} className="space-x-5 w-[30rem] flex mb-10">
+ <div className="h-screen w-screen bg-blue-600 flex justify-center items-center" >
+            <div className="max-w-xl w-full max-h-96 bg-white rounded-xl px-5 py-10">
+                <form  onSubmit={handleSubmit} className="space-x-5 w-{30rem} flex mb-10">
                     <input type= "text" className="border-2
                      border-green-400 p-2 rounded-md outline-none w-10/12" 
                      onChange={(e) => setInput(e.target.value)}
-                     value={input === ""}
+                     value={input}
                       />
                      
-                    <button type="submit" className="bg-blue-600
-                     text-white text-lg py-2 px-5 rounded-md"
-                    disabled={input===""}
+                    <button type="Submit" className="bg-blue-600
+                     text-white text-lg py-2 px-7 rounded-md"
+                    disabled={input === ""}
                      > Add</button>
                 </form>
-
-                <div className="space-y-3 h-50 overflow-y-scroll">
+                <div className="space-y-3 h-56 overflow-y-auto">
                     {
                     tasks.map((task) => (
-                    <TaskItem task={task} handleDelete={handleDelete} />
+                    <TaskItem key={task.id} task={task} handleDelete={handleDelete} />
                 ))}
                 </div>
             </div>
