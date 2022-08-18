@@ -12,7 +12,7 @@ const [tasks, setTasks] = useState(() => {
 
 });
 const [input, setInput] = useState("");
-console.log(tasks);
+// console.log(tasks);
 const handleSubmit = (e) => {
     e.preventDefault();
     if(input === "") return;

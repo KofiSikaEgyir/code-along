@@ -3,7 +3,8 @@
 // import {Image} from "./components/Image";
 // import Navbar from "./components/Navbar";
 // import Practice from "./components/Practice";
-import TaskManager from "./components/TaskManager";
+import ProductList from "./components/ProductList";
+// import TaskManager from "./components/TaskManager";
 // import Form from "./components/Form";
 
 function App(){
@@ -17,8 +18,9 @@ function App(){
       <Button label="Register" />
       <Image /> 
       <Practice />  */}
-      <TaskManager />
+      {/* <TaskManager /> */}
       {/* <Form /> */}
+      <ProductList />
       
     </div>
   )
