@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Product from "./Product";
-import Spinner from "./Spinner";
+import Product from "../components/Product";
+import Spinner from "../components/Spinner";
 import useAxios from "../hooks/useAxios";
 
 function ProductList() {
@@ -26,7 +26,7 @@ function ProductList() {
 
   return (
     <div className="flex flex-wrap gap-5 justify-center pt-10">
-      <Spinner />
+      {/* <Spinner /> */}
       {data.map((data) => (
         <Product product={data} />
       ))}
