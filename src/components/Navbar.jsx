@@ -26,7 +26,7 @@ const links = [
 
 function Navbar (){
     return(
-        <nav className="flex justify-between py-5 px-20 shadow-md">
+        <nav className="flex justify-between bg-gray-900 text-white py-5 px-20 shadow-md">
             <h3>Hostel Rental</h3>
             <ul className="flex gap-5">
                 {
