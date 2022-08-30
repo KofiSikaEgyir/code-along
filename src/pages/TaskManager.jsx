@@ -16,7 +16,7 @@ function TaskManager() {
     let newTask = {
       id: uuid(),
       text: input,
-      completed: true,
+      completed: false,
     };
 
     setValue([newTask, ...tasks], () => {});
@@ -28,6 +28,31 @@ function TaskManager() {
     const newTasks = tasks.filter((task) => task.id !== id);
     setValue(newTasks);
   };
+
+  const handleCompleted = (id) => {
+    const newTasks = tasks.map((task) => {
+      if (task.id === id) {
+        return {
+          ...task,
+          completed: !task.completed,
+        };
+      }
+      return task;
+    });
+    setValue(newTasks);
+  };
+
+  const handleEdit = (id) => {
+    const newTasks = tasks.filter((task) => {
+      if (task.id === id) {
+        setInput(task.text);
+        return false;
+      }
+      return task;
+    });
+    setValue(newTasks);
+  };
+
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
@@ -41,8 +66,8 @@ function TaskManager() {
         >
           <input
             type="text"
-            className="border-2
-                     border-green-400 p-2 rounded-md outline-none w-10/12"
+            className="border-4
+                     border-blue-400 p-2 rounded-xl outline-none w-10/12"
             onChange={(e) => setInput(e.target.value)}
             value={input}
           />
@@ -50,7 +75,7 @@ function TaskManager() {
           <button
             type="Submit"
             className="bg-blue-600
-                     text-white text-lg py-2 px-7 rounded-md"
+                     text-white text-lg py-2 px-7 rounded-xl"
             disabled={input === ""}
           >
             {" "}
@@ -59,7 +84,13 @@ function TaskManager() {
         </form>
         <div className="space-y-3 h-56 overflow-y-auto">
           {tasks.map((task) => (
-            <TaskItem key={task.id} task={task} handleDelete={handleDelete} />
+            <TaskItem
+              key={task.id}
+              task={task}
+              handleDelete={handleDelete}
+              handleCompleted={handleCompleted}
+              handleEdit={handleEdit}
+            />
           ))}
         </div>
       </div>

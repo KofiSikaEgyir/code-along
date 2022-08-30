@@ -26,8 +26,8 @@ const links = [
 
 function Navbar (){
     return(
-        <nav className="flex justify-between bg-violet-600 text-white py-5 px-20 shadow-md">
-            <h3>Hostel Rental</h3>
+        <nav className="flex justify-between bg-violet-600  text-white py-5 px-20 shadow-md">
+            <h3>RuPhil Rental</h3>
             <ul className="flex gap-5">
                 {
                     links.map((link, index) => (
